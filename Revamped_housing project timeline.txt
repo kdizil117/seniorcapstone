@@ -1,0 +1,20 @@
+1.compare housing price increase with wage increase with linear progression and lstm model
+1.1 plot increase in housing prices and predict future
+1.2 make line to show what salary is needed to buy the home
+1.3 make line to show current growth in salary
+1.4 plot salary growth with needed salary
+
+2. analysis on how much revenue would increase or stabilize base on selling affordable housing
+2.1 get percentage of americans that can afford a home with normal distribution exclude 1% earners
+2.2 get percentage of americans that will be able to afford a home with changes in price using normal distribution exclude 1% earners
+2.3 check distribution against average median salaries exclude 1% earners
+
+3. do analysis on how features affect housing prices focusing on size
+3.2 compare size of house and number of bed rooms at least 3-4 bedroom homes are the best 2 bed rooms are fine
+3.3 do analysis on how much it would cost to build the home/maintain or just maintain based on current stock
+
+4.analysis on areas of the use where housing prices have increased the most and least
+4.3 check increase of these areas with linear progression
+4.4 provide heat map of areas based on affordability
+
+5.Write report based on pmbok methodology using created outline
