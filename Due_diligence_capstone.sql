@@ -33,6 +33,30 @@ from [house-prices_features]
 where cast (SalePrice as money) > 216270
 ---1898 are above this price all together
 
+select avg(cast(current_price as float)) as [avg_current_housing_price]
+from [house-prices_features]
+---current avg is 278064.34
+
+alter table [house-prices_features]
+add suggested_price money
+
+begin tran
+update [house-prices_features]
+set suggested_price = case when current_price > 216270 and cast(Bedroom_AbvGr as int) <= 3  then 216270
+                        else current_price
+                        end
+ROLLBACK
+
+select sum(suggested_price)
+from [house-prices_features]
+
+select count(*),sum(suggested_price)
+from [house-prices_features]
+where cast (suggested_price as money) <= 216270 and cast(Bedroom_AbvGr as int) <= 3
+
+select count(*),sum(suggested_price)
+from [house-prices_features]
+
 ---do analysis of worker pay
 use Worker_pay
 
@@ -62,3 +86,9 @@ rollback
 select min(cast(A_MEAN as money)) as min, max(cast(A_MEAN as money)) as max
 from bls_national_may2023_wage_data
 
+--- check percentage of workers that lie between the +1 and -1 standard deviation
+select sum(cast(TOT_EMP as int)) as affordable, sum(cast(TOT_EMP as int))/151853870 as [%]
+from bls_national_may2023_wage_data
+where cast(A_MEAN as float) between 28280.86 and 118598.17  
+
+select * from bls_national_may2023_wage_data
