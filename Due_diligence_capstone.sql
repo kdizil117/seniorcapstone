@@ -1,7 +1,3 @@
-select * from [house-prices_features]
----generate price based on current housing prices by multiplyling by the percent increase
-use Housing
-
 SELECT *
 FROM [Housing].[dbo].[quarterly_housing_19632025]
 where observation_date like '%2010%' or observation_date like '%2025%'
@@ -9,86 +5,152 @@ where observation_date like '%2010%' or observation_date like '%2025%'
 select (SalePrice * 1.538) as adjusted_current_price
 from [house-prices_features]
 
----check how many of each bed room there are to get a good idea of what the customer needs
+use Housing
+---alter table [house-prices_features]
+---add current_price money
+
 select distinct Bedroom_AbvGr, count(Bedroom_AbvGr) as count_bed
 from [house-prices_features]
 group by Bedroom_AbvGr
 
----check housing worth
+select *
+from bls_national_may2023_wage_data
 
-select sum(cast(current_price as money)) as total_stock_worth
-from [house-prices_features]
-
-/* the median annual wage is 61030.00 the real median seems to be 48060 from the table I got from the BLS(bureau of labor statistics) 
-website I think using the averages insted of raw data drove the mean and median up. if we multiply this by 4.5 we get 216270. (house price/4.5 = needed income) is the affordability measurement we use.
-now im going to check how many houses in our inventory are affordable*/
+SELECT top(10) *
+from Zillow_zip_price_month
 
 select count(*)
-from [house-prices_features]
-where cast (current_price as money) > 216270 and cast(Bedroom_AbvGr as int) <= 3
----1557 homes are above this price and have 3 or less bedrooms
+from Zillow_zip_price_month
+where StateName = 'TX'
 
-select count(*), sum(current_price)
-from [house-prices_features]
-where cast (SalePrice as money) > 216270
----1898 are above this price all together
+--- leading zeros are missing
 
-select avg(cast(current_price as float)) as [avg_current_housing_price]
-from [house-prices_features]
----current avg is 278064.34
-
-alter table [house-prices_features]
-add suggested_price money
+select concat('0',[RegionName])
+from Zillow_zip_price_month
+where LEN(RegionName) = 4
 
 begin tran
-update [house-prices_features]
-set suggested_price = case when current_price > 216270 and cast(Bedroom_AbvGr as int) <= 3  then 216270
-                        else current_price
-                        end
-ROLLBACK
-
-select sum(suggested_price)
-from [house-prices_features]
-
-select count(*),sum(suggested_price)
-from [house-prices_features]
-where cast (suggested_price as money) <= 216270 and cast(Bedroom_AbvGr as int) <= 3
-
-select count(*),sum(suggested_price)
-from [house-prices_features]
-
----do analysis of worker pay
-use Worker_pay
-
-select *
-from bls_national_may2023_wage_data
-where A_MEAN is null
-
-select *
-from total_bls_national
-
----delete total from dataset so a histogram can be created in jupyternotebook
-begin tran
-delete from bls_national_may2023_wage_data
-where O_GROUP = 'total'
+update Zillow_zip_price_month
+set RegionName = concat('0',[RegionName])
+where LEN(RegionName) = 4
 rollback
 
----these values will mess up analysis need to change them to 0
-BEGIN TRAN
-update bls_national_may2023_wage_data
-set A_MEAN = case when A_MEAN = '*' then '0'
-                  when A_Mean = '**' then '0'
-                  else A_MEAN
-                  end
-rollback
+update Zillow_zip_price_month
+set RegionName = TRIM(RegionName)
 
---- check max and min for graphing
-select min(cast(A_MEAN as money)) as min, max(cast(A_MEAN as money)) as max
-from bls_national_may2023_wage_data
 
---- check percentage of workers that lie between the +1 and -1 standard deviation
-select sum(cast(TOT_EMP as int)) as affordable, sum(cast(TOT_EMP as int))/151853870 as [%]
-from bls_national_may2023_wage_data
-where cast(A_MEAN as float) between 28280.86 and 118598.17  
+----leading zeros missing in pandas 
 
-select * from bls_national_may2023_wage_data
+alter table Zillow_zip_price_month
+alter column RegionName char(10)
+
+---trunating table to load all files into it from python
+use Housing
+TRUNCATE table [US_zip_codes_geo.min]
+
+select top(10) *
+from [az_arizona_zip_codes_geo.min]
+
+update [az_arizona_zip_codes_geo.min] 
+set geometry = cast(geometry as nvarchar(max)) as geometry
+
+select
+[az_arizona_zip_codes_geo.min].ZCTA5CE10,
+cast(geometry as nvarchar(max)) as geometry
+from [az_arizona_zip_codes_geo.min]
+
+use Housing
+
+SELECT *
+FROM Housing.dbo.avg_hpi_year a 
+
+use location_US_Json
+
+CREATE TABLE US_Zip_Json_test(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    JsonContent NVARCHAR(MAX)
+);
+
+
+
+
+SELECT TABLE_SCHEMA, TABLE_NAME 
+FROM housing.INFORMATION_SCHEMA.TABLES
+WHERE TABLE_NAME LIKE '%US_zip_codes_geo%';
+
+select top(1) *
+from US_Zip_Json u 
+
+truncate table US_Zip_Json
+truncate table us_Json
+
+CREATE TABLE US_Json(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    JsonContent NVARCHAR(MAX)
+);
+
+use location_US_Json
+select top(1) * 
+from US_Json u 
+
+select *
+from housing.dbo.Zillow_zip_price_month z 
+
+update housing.dbo.Zillow_zip_price_month
+set StateName = case when state = 'tx' then 'texas'
+
+use housing
+
+select distinct [state] 
+from housing.dbo.Zillow_zip_price_month  
+where [state] in (select [state] 
+				from Zillow_zip_price_month  
+				group by state
+				having avg([_05_31_25]) < 310000)
+
+---drop table heatmap_housing
+
+
+
+select us.id,us.Jsoncontent into heatmap_housing_affordable 
+from location_us_json.dbo.US_Json us
+
+select us.id, zm.StateName, avg(zm.[_05_31_25]) as avg_price,us.JsonContent into heatmap_housing
+from location_US_Json.dbo.US_Json us 
+left join housing.dbo.Zillow_zip_price_month zm
+on SUBSTRING(JsonContent, CHARINDEX('"abbreviation": "', JsonContent) + 17, 2)  = zm.StateName 
+group by us.Id, zm.StateName, us.JsonContent
+
+---drop table heatmap_housing_affordable
+
+select * into heatmap_housing_affordable
+from heatmap_housing
+where avg_price <= 216270.99
+
+select * into heatmap_housing_midlevel
+from heatmap_housing
+where avg_price <= 315000
+
+select * into heatmap_housing_upperlevel
+from heatmap_housing
+where avg_price >= 315000
+
+
+select *
+from heatmap_housing_affordable
+where statename = 'al'
+
+SELECT TOP 5 JsonContent 
+FROM dbo.heatmap_housing_affordable 
+WHERE JsonContent NOT LIKE '%"geometry"%'
+
+alter table heatmap_housing
+add [iso_3166-2] char (5)
+
+update heatmap_housing
+set [iso_3166-2] = concat('US-',StateName)
+
+SELECT *
+FROM heatmap_housing
+
+select * from housing.dbo.[house-prices_features]
