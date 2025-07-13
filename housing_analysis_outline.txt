@@ -1,0 +1,212 @@
+📘 PMBOK-Style Affordable Housing Project Report Outline
+🧾 Cover Page
+Project Title: Affordable Housing Market Analysis for Strategic Expansion
+
+Author: Your Name
+
+Date
+
+Organization: (e.g., "Fictional Housing Solutions, Inc.")
+
+📄 1. Executive Summary (1–2 pages)
+Project Purpose
+
+Summary of Findings
+
+Key Recommendations
+
+Tools Used
+
+📋 2. Project Charter (1–2 pages)
+Business Case
+
+Objectives
+
+Scope (In-Scope / Out-of-Scope)
+
+Assumptions & Constraints
+
+Key Stakeholders
+
+📈 3. Scope Management (2–3 pages)
+Work Breakdown Structure (WBS)
+
+Deliverables (e.g., dashboards, regression models, visualizations)
+
+Requirements Traceability Matrix
+
+📊 4. Schedule Management (2 pages)
+Gantt Chart / Timeline
+
+Milestones
+
+Tools used to track progress (Jira, Excel, etc.)
+
+💰 5. Cost Management (1–2 pages)
+Budget Estimation for Tools, Data, Labor (if this were a real project)
+
+Cost-benefit analysis (e.g., how housing price vs wage impacts return)
+
+📉 6. Quality Management (1–2 pages)
+Data Quality Checks (e.g., outliers, missing data)
+
+Accuracy of Regression Models (R², MSE)
+
+Review and validation process
+
+🤝 7. Stakeholder & Communication Management (1–2 pages)
+Stakeholder Register (fictitious roles)
+
+Communication Plan
+
+Meeting Cadence
+
+📦 8. Risk Management (2 pages)
+Risk Register (e.g., inaccurate wage data, forecasting error)
+
+Mitigation Strategies
+
+Risk Matrix (Impact vs. Likelihood)
+
+⚙️ 9. Integration Management (1–2 pages)
+How data sources/tools were integrated
+
+Decision-making framework
+
+🧪 10. Tools & Technology Stack (2 pages)
+Jupyter Notebook – Data cleaning, regression, modeling
+
+Python Libraries (Pandas, Scikit-learn, Matplotlib, Seaborn)
+
+MSSQL – Database and queries
+
+Apache Superset – Dashboards and visualizations
+
+Git/GitHub – Version control (if applicable)
+
+📊 11. Data Analysis & Results (4–5 pages)
+Description of Data Sources (Zillow, Census, etc.)
+
+Data Cleaning/Processing Steps
+
+Linear Regression Results:
+
+HPI vs Actual Prices
+
+Wage Growth vs Housing Affordability
+
+State-by-state analysis
+
+Evaluation metrics (R², coefficients, etc.)
+
+📍 12. Visualization Gallery (4–5 pages)
+Heatmaps of housing affordability
+
+Line charts of HPI, wage trends, and price trends
+
+Bar charts of state comparisons
+
+Superset Dashboard Screenshots
+
+🧠 13. Recommendations & Conclusions (2 pages)
+States best suited for affordable housing investment
+
+Strategic insights from data
+
+Future directions for the company
+
+📚 14. Lessons Learned (1 page)
+What worked well
+
+Challenges encountered (e.g., data sourcing, tool limitations)
+
+Improvements for future iterations
+
+📎 15. Appendices (3–5 pages)
+Sample SQL Queries
+
+Python Code Snippets
+
+Raw Outputs (regression results, metrics)
+
+Glossary of Terms
+
+📚 16. References (1 page)
+Cite data sources (Zillow, Census Bureau, BEA, etc.)
+
+Tools and packages used
+
+📄 1. Executive Summary
+Project Title: Affordable Housing Market Analysis for Strategic Expansion
+Project Sponsor: Fictional Housing Solutions, Inc.
+Project Lead: Kalle Reaves
+Project Tools: Python (Jupyter Notebook), MSSQL, Apache Superset
+Duration: 6 Weeks
+
+This project analyzed the current state of affordable housing across the United States, focusing on identifying optimal states for potential investment by a fictional company. Using a combination of economic data — including Housing Price Index (HPI), median actual housing prices, and wage growth — we developed a series of linear regression models to assess affordability trends.
+
+Our goal was to identify U.S. states where affordable housing developments could be both economically viable and socially impactful. The project relied heavily on data from the U.S. Census Bureau, Zillow, the Bureau of Economic Analysis (BEA), and the Federal Reserve.
+
+Visual dashboards were created using Apache Superset to communicate findings in a business-friendly format. The project revealed a shortlist of states where the gap between housing cost and wage growth suggests potential for affordable housing initiatives.
+
+⚠️ 8. Risk Management – Risk Register (Example)
+ID	Risk Description	Impact	Likelihood	Response Strategy	Owner
+R1	Incomplete or outdated wage data	High	Medium	Cross-verify with multiple sources (BLS, Census)	Data Analyst
+R2	Model overfitting in regression analysis	Medium	Medium	Regular cross-validation, restrict features	Data Scientist
+R3	Superset dashboard rendering errors	Low	Medium	Update Superset, reduce chart complexity	BI Developer
+R4	Misalignment between HPI and actual prices	High	Low	Normalize data ranges, test for correlation	Analyst
+R5	MSSQL connection drop during data pulls	Medium	Low	Implement retry logic and backup queries	DBA
+
+📊 11. Data Analysis & Results
+11.1 Data Sources
+Housing Price Index (HPI): Federal Housing Finance Agency (FHFA)
+
+Median Housing Prices: Zillow Housing Data
+
+Wage Growth: U.S. Bureau of Economic Analysis (BEA)
+
+State-level Attributes: U.S. Census Bureau
+
+11.2 Methodology
+Data cleaning and transformation using pandas and numpy
+
+MSSQL used to store and query pre-processed data
+
+Regression models built using scikit-learn:
+
+HPI vs. Median Price
+
+Wage Growth vs. Housing Cost
+
+Combined affordability index per state
+
+11.3 Key Findings
+Strong positive correlation between HPI and actual housing prices (R² ≈ 0.89)
+
+Weak to moderate correlation between wage growth and housing affordability (R² ≈ 0.56), suggesting that wages are not keeping pace in many states
+
+Top candidate states for affordable housing development:
+
+Ohio, Michigan, and Texas: High wage growth, moderate housing cost, favorable HPI trends
+
+Avoid: California and New York due to low affordability and high price volatility
+
+11.4 Visual Insights
+Heatmaps showing states with the lowest price-to-income ratios
+
+Time series charts comparing historical HPI and wage trends
+
+Bar charts ranking states by projected affordability index
+
+Would you like me to help you next with:
+
+The Work Breakdown Structure (WBS) and Scope?
+
+A sample Gantt chart/timeline?
+
+The Recommendations and Lessons Learned section?
+
+Just let me know what you'd like filled in next.
+
+
+
