@@ -1,0 +1,198 @@
+### Affordable Housing Market Analysis for Strategic Expansion - PMBOK Report Outline Explained
+
+---
+
+#### 1. Executive Summary
+
+**Purpose:** A brief, high-level summary of the entire project. It communicates the overall goals, key findings, and recommendations to executives and stakeholders.
+
+**Contents:**
+
+* Project goals and importance
+* Main findings from the data analysis
+* Recommended states for housing investment
+* Tools and methods used
+
+---
+
+#### 2. Project Charter
+
+**Purpose:** Officially authorizes the project and outlines its objectives and boundaries.
+
+**Contents:**
+
+* **Business Case**: Why this project matters
+* **Objectives**: What the project aims to achieve
+* **Scope**: In-scope vs out-of-scope items
+* **Assumptions/Constraints**: E.g., data availability, timeline
+* **Key Stakeholders**: Who is impacted or involved
+
+---
+
+#### 3. Scope Management
+
+**Purpose:** Defines what will be delivered and how project boundaries are managed.
+
+**Contents:**
+
+* **Work Breakdown Structure (WBS)**: Breakdown of tasks into manageable sections
+* **Deliverables**: Regression models, dashboards, cleaned datasets, reports
+* **Requirements Traceability Matrix**: Maps stakeholder needs to deliverables
+
+---
+
+#### 4. Schedule Management
+
+**Purpose:** Describes how project time will be managed and monitored.
+
+**Contents:**
+
+* **Gantt Chart / Timeline**: Visual representation of tasks over time
+* **Milestones**: Key achievements (e.g., data cleaning complete)
+* **Tools Used**: Excel, Python scripts, project tracking tools
+
+---
+
+#### 5. Cost Management
+
+**Purpose:** Outlines how the budget and resources are planned and controlled.
+
+**Contents:**
+
+* **Cost Estimation**: Approximate costs for tools, data, and time
+* **Cost-Benefit Analysis**: Housing affordability vs investment return
+
+---
+
+#### 6. Quality Management
+
+**Purpose:** Ensures that the project's deliverables meet defined quality standards.
+
+**Contents:**
+
+* **Data Quality Checks**: Handling outliers, missing values
+* **Model Validation**: R-squared, mean squared error
+* **Review Process**: Internal peer review or external validation
+
+---
+
+#### 7. Stakeholder & Communication Management
+
+**Purpose:** Identifies all stakeholders and outlines communication plans.
+
+**Contents:**
+
+* **Stakeholder Register**: Roles, influence, and engagement level
+* **Communication Plan**: How and when updates are shared
+* **Meeting Cadence**: Weekly standups, executive briefings
+
+---
+
+#### 8. Risk Management
+
+**Purpose:** Identifies, analyzes, and responds to risks that may affect project success.
+
+**Contents:**
+
+* **Risk Register**: List of risks, impact, and mitigation
+* **Mitigation Strategies**: Preemptive actions
+* **Risk Matrix**: Visual map of likelihood vs impact
+
+---
+
+#### 9. Integration Management
+
+**Purpose:** Coordinates all elements of the project into a unified whole.
+
+**Contents:**
+
+* **Tool Integration**: How Jupyter, MSSQL, Superset work together
+* **Decision-Making**: How findings translate to business action
+
+---
+
+#### 10. Tools & Technology Stack
+
+**Purpose:** Details the technology and platforms used throughout the project.
+
+**Contents:**
+
+* **Jupyter Notebook**: For coding and modeling
+* **Python Libraries**: Pandas, Scikit-learn, Seaborn
+* **MSSQL**: Data storage and querying
+* **Apache Superset**: Data visualization dashboards
+
+---
+
+#### 11. Data Analysis & Results
+
+**Purpose:** Explains the analytical methods and summarizes key results.
+
+**Contents:**
+
+* **Data Sources**: Zillow, Census, BEA, Federal Reserve
+* **Regression Analysis**: HPI vs Price, Wage vs Affordability
+* **Metrics**: R-squared, coefficients, model evaluation
+
+---
+
+#### 12. Visualization Gallery
+
+**Purpose:** Showcases the visuals generated during the analysis.
+
+**Contents:**
+
+* **Heatmaps**: Regional affordability
+* **Line Charts**: Historical HPI and wage trends
+* **Bar Charts**: State comparisons
+* **Dashboard Screenshots**: Superset visuals
+
+---
+
+#### 13. Recommendations & Conclusions
+
+**Purpose:** Highlights actionable insights and next steps based on data.
+
+**Contents:**
+
+* **Best States**: For development
+* **Business Insights**: From analysis
+* **Future Work**: Other models or regions to explore
+
+---
+
+#### 14. Lessons Learned
+
+**Purpose:** Reflects on what worked and what can be improved.
+
+**Contents:**
+
+* **Successes**: Effective tools, models, or team practices
+* **Challenges**: Data issues, time constraints
+* **Suggestions**: For future projects
+
+---
+
+#### 15. Appendices
+
+**Purpose:** Supplementary material and technical details.
+
+**Contents:**
+
+* **SQL Queries**
+* **Python Code Snippets**
+* **Raw Regression Outputs**
+* **Glossary of Terms**
+
+---
+
+#### 16. References
+
+**Purpose:** Cite all sources of data, literature, and tools.
+
+**Contents:**
+
+* Zillow, U.S. Census Bureau, BEA
+* Python libraries
+* Project management frameworks
+	0					0	A		0			N
